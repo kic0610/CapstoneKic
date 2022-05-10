@@ -25,10 +25,10 @@ const TemplateSelect = styled.div`
     font-size: 1.5rem;
     font-weight: 600;
     padding: 5px;
-    width: 20%;
+    width: 25%;
     height: 30%;
     border-radius: 5px;
-    transition: 0.7s;
+    transition: 0.6s;
     cursor: pointer;
   }
 
@@ -150,19 +150,34 @@ const AnswerTypeSelect = styled.div`
 const AddBtn = styled.div`
   position: fixed;
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  top: 68%;
-  right: 4%;
+  top: 53%;
+  right: 0.7%;
 
-  width: 8%;
-  border: 2px solid black;
-  background-color: #181a1b;
+  width: 13%;
+  height: 20%;
+
   color: #bfbfbf;
-  border-radius: 5px;
+
   font-weight: 600;
 
-  cursor: pointer;
+  div {
+    border-radius: 4px;
+    background-color: #181a1b;
+    padding: 3px;
+
+    width: 100%;
+    text-align: center;
+    transition: 0.6s;
+
+    cursor: pointer;
+  }
+
+  div:hover {
+    box-shadow: 0px 0px 15px #181a1b;
+  }
 `;
 
 const surveying = () => {
@@ -174,8 +189,8 @@ const surveying = () => {
       </h1>
       <TemplateSelect>
         <span style={{ backgroundColor: "#EE5D5A" }}>설문 작성 완료</span>
-        <span style={{ backgroundColor: "#E6AA52" }}>객관식 설문</span>
-        <span style={{ backgroundColor: "#AEC9C3" }}>주관식 설문</span>
+        <span style={{ backgroundColor: "#E6AA52" }}>자기소개 템플릿</span>
+        <span style={{ backgroundColor: "#AEC9C3" }}>여행지 선택 템플릿</span>
       </TemplateSelect>
       <br />
       <br />
@@ -267,8 +282,14 @@ const surveying = () => {
         </SurveyBox>
       </TemplateForm>
       <AddBtn>
-        <PlusCircleOutlined />
-        설문 추가
+        <div>
+          <PlusCircleOutlined style={{ marginRight: "10px", fontSize: "1rem" }} />
+          객관식 설문 추가
+        </div>
+        <div>
+          <PlusCircleOutlined style={{ marginRight: "10px", fontSize: "1rem" }} />
+          주관식 설문 추가
+        </div>
       </AddBtn>
     </div>
   );
