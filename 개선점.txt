@@ -1,4 +1,4 @@
-깃허브에서 첫번째로 로그인511 M23
+깃허브에서 첫번째로 로그인511 W
 만약 깃 push오류 발생시 https://systemop.tistory.com/20 사이트에서 제시하는 방법으로 해결
 import styled from "styled-components"; 최상위에서 한번만 선언하는방법
 
