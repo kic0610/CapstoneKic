@@ -7,6 +7,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { EditTwoTone, UserOutlined } from "@ant-design/icons";
+import { useState } from "react";
 
 const HomeMenuBar = styled(Menu)`
   position: sticky;
@@ -47,12 +48,27 @@ const HomeMenuBar = styled(Menu)`
 `;
 
 const HomeMenu = () => {
+  let [SearchText, setSearchText] = useState();
+
+  let onSearch = (e) => {
+    setSearchText(e.target.value);
+  };
+
   return (
     <HomeMenuBar>
       <Link to="/">
         <div style={{ fontSize: "2rem", fontWeight: "800", marginRight: "3%", color: "#2F3F56" }}>Home</div>
       </Link>
-      <Input.Search style={{ width: "40%" }} placeholder="찾아볼 설문을 입력하세요" enterButton />
+      <Input.Search
+        style={{ width: "40%" }}
+        placeholder="찾아볼 설문을 입력하세요"
+        enterButton
+        value={SearchText}
+        onChange={onSearch}
+        onSearch={() => {
+          console.log("submit 메소드작동");
+        }}
+      />
       <NavLink to="/Writer_id/post">
         <Menu.Item className="MenuBTN" icon={<UserOutlined style={{ fontSize: "1.3rem" }} />}>
           내 정보
