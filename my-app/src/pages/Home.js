@@ -67,7 +67,7 @@ const Home = () => {
 
   return (
     <div>
-      <h1 style={{ marginLeft: "5%", fontWeight: 600 }}>홈 (설문post접근데이터 , 작성자명 , 설문제목을 썸네일로 구현 )</h1>
+      <h1 style={{ marginLeft: "5%", fontWeight: 600 }}>홈W (설문post접근데이터 , 작성자명 , 설문제목을 썸네일로 구현 )</h1>
       <MainText style={{ fontFamily: "Reenie Beanie" }}>{Rtime}</MainText>
       <HomeSection>
         {/* PostCard로 추후에 대체 */}
