@@ -46,6 +46,7 @@ const LoginBox = styled(Form)`
 
   position: relative;
   width: 33vw;
+  height: 63vh;
   left: 5%;
 `;
 
