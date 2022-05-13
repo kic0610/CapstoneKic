@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useCallback, useEffect } from "react";
 
 import HomeMenu3 from "../components/HomeMenu3";
+import PostGraph from "../components/PostGraph";
 
 const MainText = styled.div`
   display: block;
@@ -29,7 +30,7 @@ const HomeSection = styled.section`
   align-items: flex-start;
 `;
 
-const Home = () => {
+const Home = (data) => {
   useEffect(() => {
     console.log("Home 리렌더링");
   });

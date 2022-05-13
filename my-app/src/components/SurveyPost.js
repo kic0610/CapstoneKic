@@ -1,7 +1,9 @@
 import { Input, Form } from "antd";
 import { PlusCircleOutlined, MinusCircleOutlined } from "@ant-design/icons";
 import React from "react";
+
 import styled from "styled-components";
+import PostGraph from "./PostGraph";
 
 const ServeyForm = styled(Form)`
   position: relative;
@@ -127,6 +129,7 @@ const SurveyPost = () => {
           <div className="bottomLine" style={{ bottom: "inherit", backgroundColor: "green", height: "1px", width: "99%", display: "block" }}></div>
         </SurveyBox>
       </ServeyForm>
+      <PostGraph />
     </div>
   );
 };
