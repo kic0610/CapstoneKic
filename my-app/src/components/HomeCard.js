@@ -21,20 +21,10 @@ const CardTextContent = styled.div`
 `;
 
 const HomeCard = (data) => {
-  let data1 = data.data;
-  console.log(data1);
-
   return (
     <Link to="/post/1_post_id">
-      {/* <Card
-        hoverable
-        style={{ width: 240, height: "400px", border: "2px solid black" }}
-        cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-      >
-        <Card.Meta title={dummy_writer.dummy_writer} />
-      </Card> */}
-      <Card hoverable style={{ width: 240, height: "400px", border: "2px solid black" }} cover={<CardTextContent>{data1.surveyTitle}</CardTextContent>}>
-        <Card.Meta title={data1.writer} />
+      <Card hoverable style={{ width: 240, height: "400px", border: "2px solid black" }} cover={<CardTextContent>{data.data.surveyTitle}</CardTextContent>}>
+        <Card.Meta title={data.data.writer} />
       </Card>
     </Link>
   );
