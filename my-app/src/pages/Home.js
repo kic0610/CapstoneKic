@@ -1,12 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { Card } from "antd";
-import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useCallback, useEffect } from "react";
 
-import HomeMenu3 from "../components/HomeMenu3";
-import PostGraph from "../components/PostGraph";
+import HomeCard from "../components/HomeCard";
 
 const MainText = styled.div`
   display: block;
@@ -30,7 +27,19 @@ const HomeSection = styled.section`
   align-items: flex-start;
 `;
 
-const Home = (data) => {
+let homeCardData = [
+  { writer: "zuckerberg1", surveyTitle: "설문1" },
+  { writer: "zuckerberg2", surveyTitle: "설문2" },
+  { writer: "zuckerberg3", surveyTitle: "설문3" },
+  { writer: "zuckerberg4", surveyTitle: "설문4" },
+  { writer: "zuckerberg5", surveyTitle: "설문5" },
+  { writer: "zuckerberg6", surveyTitle: "설문6" },
+  { writer: "zuckerberg7", surveyTitle: "설문7" },
+  { writer: "zuckerberg8", surveyTitle: "설문8" },
+];
+
+const Home = () => {
+  // console.log(dummy_writer[0].writer);
   useEffect(() => {
     console.log("Home 리렌더링");
   });
@@ -58,8 +67,6 @@ const Home = (data) => {
     return TimeText;
   }, []); // prev를 사용하면 state값을 불러온다 !로 반전값을 준다
 
-  // const RtimeRef = useRef(clock());
-
   useEffect(() => {
     setInterval(() => {
       setTime(clock());
@@ -67,72 +74,15 @@ const Home = (data) => {
   }, []);
 
   return (
+    // prop를 받아와 하나씩 넣어서
     <div>
       <h1 style={{ marginLeft: "5%", fontWeight: 600 }}>홈WM OS (설문post접근데이터 , 작성자명 , 설문제목을 썸네일로 구현 )</h1>
       <MainText style={{ fontFamily: "Reenie Beanie" }}>{Rtime}</MainText>
       <HomeSection>
-        {/* PostCard로 추후에 대체 */}
-        <Link to="/post/1_post_id">
-          <Card
-            hoverable
-            style={{ width: 240, height: "400px", border: "2px solid black" }}
-            cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-          >
-            <Card.Meta title="1Europe Street beat" description="www.instagram.com" />
-          </Card>
-        </Link>
-        <Card
-          hoverable
-          style={{ width: 240, height: "400px", border: "2px solid black" }}
-          cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-        >
-          <Card.Meta title="2Europe Street beat" description="www.instagram.com" />
-        </Card>
-        <Card
-          hoverable
-          style={{ width: 240, height: "400px", border: "2px solid black" }}
-          cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-        >
-          <Card.Meta title="3Europe Street beat" description="www.instagram.com" />
-        </Card>
-        <Card
-          hoverable
-          style={{ width: 240, height: "400px", border: "2px solid black" }}
-          cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-        >
-          <Card.Meta title="4Europe Street beat" description="www.instagram.com" />
-        </Card>
-        <Card
-          hoverable
-          style={{ width: 240, height: "400px", border: "2px solid black" }}
-          cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-        >
-          <Card.Meta title="5Europe Street beat" description="www.instagram.com" />
-        </Card>
-        <Card
-          hoverable
-          style={{ width: 240, height: "400px", border: "2px solid black" }}
-          cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-        >
-          <Card.Meta title="6Europe Street beat" description="www.instagram.com" />
-        </Card>
-        <Card
-          hoverable
-          style={{ width: 240, height: "400px", border: "2px solid black" }}
-          cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-        >
-          <Card.Meta title="7Europe Street beat" description="www.instagram.com" />
-        </Card>
-        <Card
-          hoverable
-          style={{ width: 240, height: "400px", border: "2px solid black" }}
-          cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-        >
-          <Card.Meta title="8Europe Street beat" description="www.instagram.com" />
-        </Card>
+        {homeCardData.map((data) => (
+          <HomeCard data={data} />
+        ))}
       </HomeSection>
-      {/* 하위 컴포넌트 리렌더링 확인목적의 HomeMenu3 컴포넌트 */}
-      {/* <HomeMenu3 /> */}
     </div>
   );
 };

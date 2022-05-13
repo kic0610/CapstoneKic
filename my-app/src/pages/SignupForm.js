@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Input } from "antd";
+import { Col, Input } from "antd";
 import { Button } from "antd";
 import { Checkbox } from "antd";
 import { Form } from "antd";
@@ -60,7 +60,9 @@ const SignupForm = () => {
       <br />
 
       <SignupBox>
-        <label htmlFor="user-nickname">닉네임</label>
+        <label htmlFor="user-nickname">
+          닉네임 <span style={{ color: "#a1a1a1", fontSize: "0.9rem" }}> 설문자명으로 사용됩니다 </span>
+        </label>
         <Input style={{ width: "15vw", display: "block" }} type={"text"} placeholder="닉네임" />
         <br />
         <br />

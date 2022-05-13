@@ -26,6 +26,10 @@ const MyFooter = styled.footer`
 const App = () => {
   return (
     <div style={{ minHeight: "100vh", backgroundColor: "Background" }}>
+      {/* <div>
+            {tripPlace.map((country) => (<Trip place={country.place} />))}
+            {dummy_writer.map((dummy_writer) => (<Home place={dummy_writer.writer} />))}
+        </div> */}
       <HomeMenu />
       <Routes>
         <Route path="/" element={<Home />} />
