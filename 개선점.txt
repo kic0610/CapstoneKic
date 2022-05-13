@@ -9,6 +9,7 @@ import styled from "styled-components"; 최상위에서 한번만 선언하는�
 
 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 필수로 배우기 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
+그래프를 연동하여 설문클릭시 결과도 같이 보이게하기
 현재 컴포넌트에서 state값 변경시 하위 컴포넌트의 리렌더링을 방지시키는방법
 PureComponent 키워드로 탐색
 컴포넌트의 state나 props가 변경될때 아니면 re-render 되지 않는다.
