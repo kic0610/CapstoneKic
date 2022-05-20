@@ -39,7 +39,6 @@ let homeCardData = [
 ];
 
 const Home = () => {
-  // console.log(dummy_writer[0].writer);
   useEffect(() => {
     console.log("Home 리렌더링");
   });

@@ -3,6 +3,9 @@ import { PlusCircleOutlined, MinusCircleOutlined } from "@ant-design/icons";
 import React, { useState } from "react";
 import styled from "styled-components";
 import { DatePicker, Space } from "antd";
+import { useCallback } from "react";
+import MultipleChoice from "../components/MultipleChoice";
+import SubjectiveQuestion from "../components/SubjectiveQuestion";
 
 const TemplateSelect = styled.div`
   position: relative;
@@ -59,12 +62,12 @@ const TemplateForm = styled(Form)`
   font-size: 1.2rem;
   padding: 7%;
 
-  /* 센터로 정렬하는 flex */
   display: flex;
   justify-content: center;
   align-items: center;
 
-  .ant-input {
+  /* ant-input는 Input.TextArea를 뜻함 */
+  .surveyTitle {
     border: 2px solid black;
     border-radius: 7px;
   }
@@ -86,65 +89,6 @@ const TitleSurveyBox = styled.div`
   justify-content: center;
   align-items: flex-start;
   margin-top: 25px;
-`;
-
-const SurveyBox = styled.div`
-  margin-top: 100px;
-
-  min-width: 100%;
-  max-width: 100%;
-
-  .answerObjectivity {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-  }
-
-  .answerObjectivityItem {
-    min-width: 85px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 7.5px;
-    margin-bottom: 7.5px;
-  }
-
-  .ant-input {
-    font-size: 1rem;
-    width: 99%;
-    height: 37px;
-    background-color: #181a1b;
-    color: #a5a5a6;
-    border: none;
-  }
-`;
-
-const AnswerTypeSelect = styled.div`
-  display: flex;
-  justify-content: space-around;
-  font-size: 0.9rem;
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
-
-  .subjectiveQuestion {
-    background-color: #3c5473;
-    width: 60px;
-    text-align: center;
-    padding: 3px;
-    color: #9c9489;
-    font-weight: 600;
-    cursor: pointer;
-  }
-
-  .objectivityQuestion {
-    background-color: #a8a2a2;
-    width: 60px;
-    text-align: center;
-    padding: 3px;
-    color: #353535;
-    font-weight: 600;
-    cursor: pointer;
-  }
 `;
 
 const AddBtn = styled.div`
@@ -180,13 +124,24 @@ const AddBtn = styled.div`
   }
 `;
 
-const MultipleChoice = styled.div``;
-const SubjectiveQuestion = styled.div``;
+const SurveyContainer = styled.div`
+  width: 100%;
+`;
 
-const surveying = () => {
-  let onMultipleChoiceAdd = () => {
-    console.log("객관식설문추가");
-  };
+const Surveying = () => {
+  let [multipleChoiceKey, setMultipleChoiceKey] = useState([0]);
+
+  let onMultipleChoiceAdd = useCallback(() => {
+    const N_multipleChoiceKey = multipleChoiceKey.concat(2);
+    setMultipleChoiceKey(N_multipleChoiceKey);
+  }, [multipleChoiceKey]);
+
+  let [SubjectiveQuestionKey, setSubjectiveQuestionKey] = useState([0]);
+
+  let onSubjectiveQuestionAdd = useCallback(() => {
+    const N_SubjectiveQuestionKey = SubjectiveQuestionKey.concat(2);
+    setSubjectiveQuestionKey(N_SubjectiveQuestionKey);
+  }, [SubjectiveQuestionKey]);
 
   return (
     <div>
@@ -207,6 +162,7 @@ const surveying = () => {
         <div className="TopForm">
           <TitleSurveyBox>
             <Input.TextArea
+              className="surveyTitle"
               placeholder="설문 제목을 입력하세요"
               style={{ fontSize: "1rem", width: "40vw", height: "37px", backgroundColor: "#181A1B", color: "white", border: "none" }}
               maxLength={30}
@@ -221,86 +177,30 @@ const surveying = () => {
         <br />
         <br />
 
-        <SurveyBox>
-          <Input.TextArea placeholder="설문을 입력하세요" value={123}></Input.TextArea>
-          <div className="bottomLine" style={{ bottom: "inherit", backgroundColor: "pink", height: "1px", width: "99%", display: "block" }}></div>
+        <SurveyContainer>
+          {multipleChoiceKey.map((data) => (
+            <MultipleChoice data={data} />
+          ))}
 
-          <AnswerTypeSelect>
-            <span style={{ marginRight: "90px" }}> 응답받을 답변 형식을 선택하세요.</span>
-            <span className="subjectiveQuestion">주관식</span> <span className="objectivityQuestion">객관식</span>
-          </AnswerTypeSelect>
-
-          <div className="answerSubject">사용자의 답변이 입력되는 란입니다.</div>
-          <div className="bottomLine" style={{ bottom: "inherit", backgroundColor: "green", height: "1px", width: "99%", display: "block" }}></div>
-        </SurveyBox>
-
-        <SurveyBox>
-          <Input.TextArea placeholder="설문을 입력하세요"></Input.TextArea>
-          <div className="bottomLine" style={{ bottom: "inherit", backgroundColor: "pink", height: "1px", width: "99%", display: "block" }}></div>
-
-          <AnswerTypeSelect>
-            <span style={{ marginRight: "90px" }}> 응답받을 답변 형식을 선택하세요.</span>
-            <span className="subjectiveQuestion">주관식</span> <span className="objectivityQuestion">객관식</span>
-          </AnswerTypeSelect>
-
-          <div className="answerObjectivity">
-            <span className="answerObjectivityItem">
-              <MinusCircleOutlined />
-              <input type="checkbox" name="피자" id="피자" />
-              <label for="피자">피자1</label>
-            </span>
-            <span className="answerObjectivityItem">
-              <MinusCircleOutlined />
-              <input type="checkbox" name="피자" id="피자" />
-              <label for="피자">피자2</label>
-            </span>
-            <span className="answerObjectivityItem">
-              <MinusCircleOutlined />
-              <input type="checkbox" name="피자" id="피자" />
-              <label for="피자">피자3</label>
-            </span>
-            <span className="answerObjectivityItem">
-              <MinusCircleOutlined />
-              <input type="checkbox" name="피자" id="피자" />
-              <label for="피자">장문 텍스트 입니다. 장문 텍스트 입니다 장문 텍스트 입니다 장문 텍스트 입니다.</label>
-            </span>
-            <span className="answerObjectivityItem">
-              <MinusCircleOutlined />
-              <input type="checkbox" name="피자" id="피자" />
-              <label for="피자">햄버거1</label>
-            </span>
-            <span className="answerObjectivityItem">
-              <MinusCircleOutlined />
-              <input type="checkbox" name="피자" id="피자" />
-              <label for="피자">햄버거2</label>
-            </span>
-            <span className="answerObjectivityItem">
-              <MinusCircleOutlined />
-              <input type="checkbox" name="피자" id="피자" />
-              <label for="피자">햄버거3</label>
-            </span>
-            <span className="answerObjectivityItem">
-              <MinusCircleOutlined />
-              <input type="checkbox" name="피자" id="피자" />
-              <label for="피자">햄버거4</label>
-            </span>
-          </div>
-          <div className="bottomLine" style={{ bottom: "inherit", backgroundColor: "green", height: "1px", width: "99%", display: "block" }}></div>
-        </SurveyBox>
+          {SubjectiveQuestionKey.map((data) => (
+            <SubjectiveQuestion data={data} />
+          ))}
+        </SurveyContainer>
       </TemplateForm>
 
       <AddBtn>
-        <MultipleChoice onClick={onMultipleChoiceAdd}>
-          <PlusCircleOutlined style={{ marginRight: "10px", fontSize: "1rem" }} />
-          객관식 설문 추가
-        </MultipleChoice>
-        <SubjectiveQuestion>
+        <div onClick={onMultipleChoiceAdd}>
           <PlusCircleOutlined style={{ marginRight: "10px", fontSize: "1rem" }} />
           주관식 설문 추가
-        </SubjectiveQuestion>
+        </div>
+
+        <div onClick={onSubjectiveQuestionAdd}>
+          <PlusCircleOutlined style={{ marginRight: "10px", fontSize: "1rem" }} />
+          객관식 설문 추가
+        </div>
       </AddBtn>
     </div>
   );
 };
 
-export default surveying;
+export default Surveying;

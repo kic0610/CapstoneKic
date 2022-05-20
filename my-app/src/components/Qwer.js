@@ -1,12 +1,13 @@
 import React from "react";
 
 const Qwer = () => {
-  let onadd = () => {};
-
+  const dummyArray = ["one", "two", "three", "four", "five"];
   return (
-    <div className="qqq">
-      <button onClick={onadd}>버튼</button>
-    </div>
+    <ul>
+      {dummyArray.map((value, index) => {
+        return <li key={index}>{value}</li>;
+      })}
+    </ul>
   );
 };
 
