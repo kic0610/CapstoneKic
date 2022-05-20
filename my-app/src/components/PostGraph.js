@@ -1,7 +1,16 @@
 import React from "react";
 import { ResponsivePie } from "@nivo/pie";
+import styled from "styled-components";
 
-const PostGraph = ({}) => {
+const PostGraph = () => {
+  const DivGraph = styled.div`
+    width: 500px;
+    height: 500px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  `;
+
   let data = [
     {
       id: "go",
@@ -36,9 +45,10 @@ const PostGraph = ({}) => {
   ];
 
   return (
-    <div style={{ width: "400px", height: "400px" }}>
+    <DivGraph>
       <ResponsivePie
         data={data}
+        theme={{ legends: { text: { fontSize: 17 } } }}
         margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
         innerRadius={0.5}
         padAngle={0.7}
@@ -51,7 +61,7 @@ const PostGraph = ({}) => {
         }}
         arcLinkLabelsSkipAngle={10}
         arcLinkLabelsTextColor="#333333"
-        arcLinkLabelsThickness={2}
+        arcLinkLabelsThickness={5}
         arcLinkLabelsColor={{ from: "color" }}
         arcLabelsSkipAngle={10}
         arcLabelsTextColor={{
@@ -154,7 +164,7 @@ const PostGraph = ({}) => {
           },
         ]}
       />
-    </div>
+    </DivGraph>
   );
 };
 

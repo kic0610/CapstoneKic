@@ -85,6 +85,9 @@ const HomeMenu = () => {
       <NavLink to="/login">
         <Menu.Item className="MenuBTN">로그인</Menu.Item>
       </NavLink>
+      <NavLink to="/qwer">
+        <Menu.Item className="MenuBTN">qwer</Menu.Item>
+      </NavLink>
     </HomeMenuBar>
   );
 };

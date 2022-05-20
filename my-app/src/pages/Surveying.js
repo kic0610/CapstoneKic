@@ -1,6 +1,6 @@
 import { Input, Form } from "antd";
 import { PlusCircleOutlined, MinusCircleOutlined } from "@ant-design/icons";
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { DatePicker, Space } from "antd";
 
@@ -180,7 +180,14 @@ const AddBtn = styled.div`
   }
 `;
 
+const MultipleChoice = styled.div``;
+const SubjectiveQuestion = styled.div``;
+
 const surveying = () => {
+  let onMultipleChoiceAdd = () => {
+    console.log("객관식설문추가");
+  };
+
   return (
     <div>
       <h1 style={{ marginLeft: "5%", fontWeight: 600 }}>
@@ -196,7 +203,7 @@ const surveying = () => {
       <br />
       <br />
 
-      <TemplateForm>
+      <TemplateForm className="TemplateForm">
         <div className="TopForm">
           <TitleSurveyBox>
             <Input.TextArea
@@ -215,7 +222,7 @@ const surveying = () => {
         <br />
 
         <SurveyBox>
-          <Input.TextArea placeholder="설문을 입력하세요"></Input.TextArea>
+          <Input.TextArea placeholder="설문을 입력하세요" value={123}></Input.TextArea>
           <div className="bottomLine" style={{ bottom: "inherit", backgroundColor: "pink", height: "1px", width: "99%", display: "block" }}></div>
 
           <AnswerTypeSelect>
@@ -281,15 +288,16 @@ const surveying = () => {
           <div className="bottomLine" style={{ bottom: "inherit", backgroundColor: "green", height: "1px", width: "99%", display: "block" }}></div>
         </SurveyBox>
       </TemplateForm>
+
       <AddBtn>
-        <div>
+        <MultipleChoice onClick={onMultipleChoiceAdd}>
           <PlusCircleOutlined style={{ marginRight: "10px", fontSize: "1rem" }} />
           객관식 설문 추가
-        </div>
-        <div>
+        </MultipleChoice>
+        <SubjectiveQuestion>
           <PlusCircleOutlined style={{ marginRight: "10px", fontSize: "1rem" }} />
           주관식 설문 추가
-        </div>
+        </SubjectiveQuestion>
       </AddBtn>
     </div>
   );
