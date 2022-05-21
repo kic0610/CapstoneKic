@@ -84,21 +84,27 @@ const SubjectiveQuestion = (data) => {
 
   let onOptionAdd = useCallback(() => {
     let shortkey = shortid.generate();
-    console.log(shortkey);
     setOption(option.concat(shortkey));
   }, [option]);
 
   let onOptionRemove = useCallback(
     (e) => {
       const target = e.currentTarget.getAttribute("data-option-key");
-      setOption(option.filter((aaa) => aaa !== target));
+      setOption(option.filter((data) => data !== target));
     },
     [option]
   );
 
+  // 입력을 받아서 상태로 저장하는 모듈
+  let [state, setState] = useState();
+  let onInput = useCallback((e) => {
+    setState(e.target.value);
+    console.log(e.target.value);
+  }, []);
+
   return (
     <SurveyBox key={data} style={{ msUserSelect: "none", MozUserSelect: "-moz-none", WebkitUserSelect: "none", userSelect: "none" }}>
-      <Input.TextArea className="SubjectiveQuestionTitle" placeholder="설문을 입력하세요"></Input.TextArea>
+      <Input.TextArea className="SubjectiveQuestionTitle" placeholder="설문을 입력하세요" value={state} onChange={onInput}></Input.TextArea>
       <div className="bottomLine" style={{ bottom: "inherit", backgroundColor: "pink", height: "1px", width: "99%", display: "block" }}></div>
 
       <span onClick={onOptionAdd} style={{ cursor: "pointer" }}>

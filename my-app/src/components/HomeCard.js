@@ -21,10 +21,11 @@ const CardTextContent = styled.div`
 `;
 
 const HomeCard = (data) => {
+  let cardData = data.data;
   return (
     <Link to="/post/1_post_id">
-      <Card hoverable style={{ width: 240, height: "400px", border: "2px solid black" }} cover={<CardTextContent>{data.data.surveyTitle}</CardTextContent>}>
-        <Card.Meta title={data.data.writer} />
+      <Card hoverable style={{ width: 240, height: "400px", border: "2px solid black" }} cover={<CardTextContent>{cardData.surveyTitle}</CardTextContent>}>
+        <Card.Meta title={cardData.date} />
       </Card>
     </Link>
   );

@@ -7,6 +7,7 @@ import { useCallback } from "react";
 import MultipleChoice from "../components/MultipleChoice";
 import SubjectiveQuestion from "../components/SubjectiveQuestion";
 import { Button } from "antd";
+import shortid from "shortid";
 
 const TemplateSelect = styled.div`
   position: relative;
@@ -110,26 +111,47 @@ const SurveyContainer = styled.div`
 `;
 
 const Surveying = () => {
-  let [multipleChoiceKey, setMultipleChoiceKey] = useState([0]);
+  // 주관식 설문 데이터 생성 및 삭제 (배열데이터 map하여 사용 , component key 사용필수)
+
+  let [multipleChoiceKey, setMultipleChoiceKey] = useState([]);
 
   let onMultipleChoiceAdd = useCallback(() => {
-    const N_multipleChoiceKey = multipleChoiceKey.concat(2);
-    setMultipleChoiceKey(N_multipleChoiceKey);
+    let shortkey = shortid.generate();
+    setMultipleChoiceKey(multipleChoiceKey.concat(shortkey));
   }, [multipleChoiceKey]);
 
-  let [SubjectiveQuestionKey, setSubjectiveQuestionKey] = useState([0]);
+  let onMultipleChoiceRemove = useCallback(
+    (e) => {
+      const target = e.currentTarget.getAttribute("data-MultipleChoice-key");
+      setMultipleChoiceKey(multipleChoiceKey.filter((data) => data !== target));
+    },
+    [multipleChoiceKey]
+  );
+
+  // 겍관식 설문 데이터 생성 및 삭제 (배열데이터 map하여 사용 , component key 사용필수)
+
+  let [SubjectiveQuestionKey, setSubjectiveQuestionKey] = useState([]);
 
   let onSubjectiveQuestionAdd = useCallback(() => {
-    const N_SubjectiveQuestionKey = SubjectiveQuestionKey.concat(2);
-    setSubjectiveQuestionKey(N_SubjectiveQuestionKey);
+    let shortkey = shortid.generate();
+
+    setSubjectiveQuestionKey(SubjectiveQuestionKey.concat(shortkey));
   }, [SubjectiveQuestionKey]);
+
+  let onSubjectiveQuestionRemove = useCallback(
+    (e) => {
+      const target = e.currentTarget.getAttribute("data-SubjectiveQuestion-key");
+      setSubjectiveQuestionKey(SubjectiveQuestionKey.filter((data) => data !== target));
+    },
+    [SubjectiveQuestionKey]
+  );
 
   let onFinish = () => {
     console.log("제출시도", new Date());
   };
 
   return (
-    <Form onFinish={onFinish}>
+    <Form onFinish={onFinish} style={{ msUserSelect: "none", MozUserSelect: "-moz-none", WebkitUserSelect: "none", userSelect: "none" }}>
       <h1 style={{ marginLeft: "5%", fontWeight: 600 }}>
         설문하기 (불러올껀 없고 다 작성후 서버에 데이터 전송해주기( 작성시간 , 마감시간 , 고유번호 , 설문제목 ,
         번호별(설문+설문타입,객관식선택지,주관식은타입만체크)))
@@ -165,11 +187,22 @@ const Surveying = () => {
 
         <SurveyContainer>
           {multipleChoiceKey.map((data) => (
-            <MultipleChoice data={data} />
+            <span key={data}>
+              <MultipleChoice data={data} />
+              <div onClick={onMultipleChoiceRemove} data-MultipleChoice-key={data}>
+                {data} , 제거버튼
+              </div>
+            </span>
           ))}
 
+          {/* important point 1. key를 입력하지 않으면 설문제거의 버그가 일어남 */}
           {SubjectiveQuestionKey.map((data) => (
-            <SubjectiveQuestion data={data} />
+            <span key={data}>
+              <SubjectiveQuestion data={data} />
+              <div onClick={onSubjectiveQuestionRemove} data-SubjectiveQuestion-key={data}>
+                {data} , 제거버튼
+              </div>
+            </span>
           ))}
         </SurveyContainer>
       </TemplateForm>

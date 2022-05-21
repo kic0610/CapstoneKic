@@ -27,18 +27,18 @@ const HomeSection = styled.section`
   align-items: flex-start;
 `;
 
-let homeCardData = [
-  { writer: "zuckerberg1", surveyTitle: "설문1" },
-  { writer: "zuckerberg2", surveyTitle: "설문2" },
-  { writer: "zuckerberg3", surveyTitle: "설문3" },
-  { writer: "zuckerberg4", surveyTitle: "설문4" },
-  { writer: "zuckerberg5", surveyTitle: "설문5" },
-  { writer: "zuckerberg6", surveyTitle: "설문6" },
-  { writer: "zuckerberg7", surveyTitle: "설문7" },
-  { writer: "zuckerberg8", surveyTitle: "설문8" },
-];
-
 const Home = () => {
+  let [homeCardData, setHomeCardData] = useState([
+    { date: "Sat May 21 2022 01:44:33", surveyTitle: "설문1" },
+    { date: "Sat May 21 2022 01:44:34", surveyTitle: "설문2" },
+    { date: "Sat May 21 2022 01:44:35", surveyTitle: "설문3" },
+    { date: "Sat May 21 2022 01:44:36", surveyTitle: "설문4" },
+    { date: "Sat May 21 2022 01:44:37", surveyTitle: "설문5" },
+    { date: "Sat May 21 2022 01:44:38", surveyTitle: "설문6" },
+    { date: "Sat May 21 2022 01:44:39", surveyTitle: "설문7" },
+    { date: "Sat May 21 2022 01:44:40", surveyTitle: "설문8" },
+  ]);
+
   useEffect(() => {
     console.log("Home 리렌더링");
   });

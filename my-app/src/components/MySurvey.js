@@ -27,6 +27,7 @@ const MyPostItemTitle = styled.span`
   margin-left: 5%;
   font-weight: 600;
   color: #226dff;
+  cursor: pointer;
 `;
 
 const MyPostItemDate = styled.span`

@@ -4,6 +4,7 @@ import React from "react";
 
 import styled from "styled-components";
 import PostGraph from "./PostGraph";
+import { useState } from "react";
 
 const ServeyForm = styled(Form)`
   position: relative;
@@ -76,11 +77,60 @@ const SurveyBox = styled.div`
 `;
 
 const SurveyPost = () => {
+  // 입력을 받아서 상태로 저장하는 모듈
+  let [multipleChoiceServey, setMultipleChoiceServey] = useState([{ title: "가장 좋아하는 음식은 1 ?" }, { title: "가장 좋아하는 음식은 2 ?" }]);
+  let [subjectiveQuestionServey, setSubjectiveQuestionServey] = useState([
+    {
+      title: "가장 좋아하는 음식은 a ?",
+      option: ["고기피자", "포테이토피자", "김치피자", "장문 텍스트 입니다. 장문 텍스트 입니다 장문 텍스트 입니다 장문 텍스트 입니다.", "적당한 길이의 텍스트"],
+    },
+    {
+      title: "가장 좋아하는 음식은 b ?",
+      option: ["고기피자", "포테이토피자", "김치피자", "장문 텍스트 입니다. 장문 텍스트 입니다 장문 텍스트 입니다 장문 텍스트 입니다.", "적당한 길이의 텍스트"],
+    },
+  ]);
+
   return (
     <div>
       <h1 style={{ marginLeft: "5%", fontWeight: 600 }}>ㅁㅁid의 게시물 (게시물의 id를통해 (설문제목,설문번호별 설문+설문타입,객관식선택지,주관식은구현))</h1>
 
       <ServeyForm>
+        <div className="TopForm">
+          <span style={{ cursor: "pointer" }}>
+            <PlusCircleOutlined className="AddBtn" style={{ marginRight: "10px" }} />
+            설문 작성 완료
+          </span>
+        </div>
+
+        {multipleChoiceServey.map((mcdata) => (
+          <SurveyBox>
+            <div className="surveyTitle">{mcdata.title}</div>
+            <div className="bottomLine" style={{ bottom: "inherit", backgroundColor: "pink", height: "1px", width: "99%", display: "block" }}></div>
+
+            <Input.TextArea placeholder="사용자의 답변이 입력되는 란입니다."></Input.TextArea>
+            <div className="bottomLine" style={{ bottom: "inherit", backgroundColor: "green", height: "1px", width: "99%", display: "block" }}></div>
+          </SurveyBox>
+        ))}
+
+        {subjectiveQuestionServey.map((sqdata) => (
+          <SurveyBox>
+            <div className="surveyTitle">{sqdata.title}</div>
+            <div className="bottomLine" style={{ bottom: "inherit", backgroundColor: "pink", height: "1px", width: "99%", display: "block" }}></div>
+
+            <div className="answerObjectivity">
+              {sqdata.option.map((sqdata2) => (
+                <span className="answerObjectivityItem">
+                  <input type="checkbox" name="피자" id="피자" />
+                  <label for="피자">{sqdata2}</label>
+                </span>
+              ))}
+            </div>
+            <div className="bottomLine" style={{ bottom: "inherit", backgroundColor: "green", height: "1px", width: "99%", display: "block" }}></div>
+          </SurveyBox>
+        ))}
+      </ServeyForm>
+
+      {/* <ServeyForm>
         <div className="TopForm">
           <span style={{ cursor: "pointer" }}>
             <PlusCircleOutlined className="AddBtn" style={{ marginRight: "10px" }} />
@@ -128,7 +178,7 @@ const SurveyPost = () => {
           </div>
           <div className="bottomLine" style={{ bottom: "inherit", backgroundColor: "green", height: "1px", width: "99%", display: "block" }}></div>
         </SurveyBox>
-      </ServeyForm>
+      </ServeyForm> */}
       <PostGraph />
     </div>
   );
