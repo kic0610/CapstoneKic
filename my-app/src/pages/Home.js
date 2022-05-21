@@ -43,7 +43,7 @@ const Home = () => {
     console.log("Home 리렌더링");
   });
 
-  let [Rtime, setTime] = useState(null);
+  let [Rtime, setTime] = useState("Hello");
 
   const clock = useCallback(() => {
     let time = new Date();
@@ -75,7 +75,7 @@ const Home = () => {
   return (
     // prop를 받아와 하나씩 넣어서
     <div>
-      <h1 style={{ marginLeft: "5%", fontWeight: 600 }}>홈WM OS (설문post접근데이터 , 작성자명 , 설문제목을 썸네일로 구현 )</h1>
+      <h1 style={{ marginLeft: "5%", fontWeight: 600 }}>홈 (설문post접근데이터 , 작성자명 , 설문제목을 썸네일로 구현 )</h1>
       <MainText style={{ fontFamily: "Reenie Beanie" }}>{Rtime}</MainText>
       <HomeSection>
         {homeCardData.map((data) => (

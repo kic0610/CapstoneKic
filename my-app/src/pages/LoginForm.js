@@ -51,17 +51,6 @@ const LoginBox = styled(Form)`
   left: 5%;
 `;
 
-const LoginImage = styled.div`
-  border: 3px solid blue;
-  > * {
-    border: 1px solid red;
-  }
-
-  position: absolute;
-  left: 50%;
-  top: 30%;
-`;
-
 const LoginForm = (data) => {
   return (
     <div>
@@ -83,7 +72,6 @@ const LoginForm = (data) => {
         <br />
         <LoginBoxText>설문을 직접 조사 하시려면 로그인이 필수입니다!</LoginBoxText>
       </LoginBox>
-      <LoginImage>꾸며주는 이미지</LoginImage>
     </div>
   );
 };

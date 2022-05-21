@@ -8,6 +8,7 @@ import styled from "styled-components";
 
 import { EditTwoTone, UserOutlined } from "@ant-design/icons";
 import { useState } from "react";
+import { useCallback } from "react";
 
 const HomeMenuBar = styled(Menu)`
   position: sticky;
@@ -48,27 +49,22 @@ const HomeMenuBar = styled(Menu)`
 `;
 
 const HomeMenu = () => {
-  let [SearchText, setSearchText] = useState();
-
-  let onSearch = (e) => {
-    setSearchText(e.target.value);
+  let SearchSubmit = () => {
+    window.location.href = "/search/query";
   };
+
+  let [SearchText, setSearchText] = useState();
+  let onInput = useCallback((e) => {
+    setSearchText(e.target.value);
+  }, []);
 
   return (
     <HomeMenuBar>
       <Link to="/">
         <div style={{ fontSize: "2rem", fontWeight: "800", marginRight: "3%", color: "#2F3F56" }}>Home</div>
       </Link>
-      <Input.Search
-        style={{ width: "40%" }}
-        placeholder="찾아볼 설문을 입력하세요"
-        enterButton
-        value={SearchText}
-        onChange={onSearch}
-        onSearch={() => {
-          console.log("submit 메소드작동");
-        }}
-      />
+
+      <Input.Search style={{ width: "40%" }} placeholder="찾아볼 설문을 입력하세요" enterButton value={SearchText} onChange={onInput} onSearch={SearchSubmit} />
       <NavLink to="/Writer_id/post">
         <Menu.Item className="MenuBTN" icon={<UserOutlined style={{ fontSize: "1.3rem" }} />}>
           내 정보
@@ -79,15 +75,13 @@ const HomeMenu = () => {
           설문하기
         </Menu.Item>
       </NavLink>
-      <NavLink to="/signup">
+
+      {/* <NavLink to="/signup">
         <Menu.Item className="MenuBTN">회원가입</Menu.Item>
       </NavLink>
       <NavLink to="/login">
         <Menu.Item className="MenuBTN">로그인</Menu.Item>
-      </NavLink>
-      <NavLink to="/qwer">
-        <Menu.Item className="MenuBTN">qwer</Menu.Item>
-      </NavLink>
+      </NavLink> */}
     </HomeMenuBar>
   );
 };

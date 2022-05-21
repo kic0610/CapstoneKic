@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { LeftCircleOutlined, RightCircleOutlined } from "@ant-design/icons";
+import { useState } from "react";
 
 const SearchSection = styled.section`
-  background-color: aliceblue;
   position: relative;
   width: 70vw;
   height: auto;
@@ -41,6 +41,7 @@ const SearchItemTitle = styled.span`
   margin-left: 5%;
   font-weight: 600;
   color: #226dff;
+  cursor: pointer;
 `;
 
 const SearchItemDate = styled.span`
@@ -51,55 +52,32 @@ const SearchItemDate = styled.span`
 `;
 
 const SearchResult = () => {
+  let [searchData, setSearchData] = useState([
+    { 설문제목: "설문제목1", 게시글작성날짜및시간: "Sat May 21 2022 01:44:33", key: "OWEFQRF" },
+    { 설문제목: "설문제목2", 게시글작성날짜및시간: "Sat May 21 2022 12:55:46", key: "PBMFOGU" },
+  ]);
+
+  //게시물 클릭시 게시물고유 id를통해 페이지 전환하기
+  let postClick = (e) => {
+    window.location.href = `/post/${e.currentTarget.getAttribute("data-post-key")}`;
+    console.log(e.currentTarget.getAttribute("data-post-key"));
+  };
+
   return (
     <div>
       <h1 style={{ marginLeft: "5%", fontWeight: 600 }}>검색결과 (검색어를 서버로 전송해 검색값과 일치하는 설문post접근데이터)</h1>
+
       <SearchSection>
-        <SearchItem>
-          <SearchItemTitle> 카테고리 \ 설문 제목1 </SearchItemTitle>
-          <SearchItemDate>게시글 작성 날짜 \ 시간</SearchItemDate>
-        </SearchItem>
-        <SearchItem>
-          <SearchItemTitle> 카테고리 \ 설문 제목2 </SearchItemTitle>
-          <SearchItemDate>게시글 작성 날짜 \ 시간</SearchItemDate>
-        </SearchItem>
-        <SearchItem>
-          <SearchItemTitle> 카테고리 \ 설문 제목3 </SearchItemTitle>
-          <SearchItemDate>게시글 작성 날짜 \ 시간</SearchItemDate>
-        </SearchItem>
-        <SearchItem>
-          <SearchItemTitle> 카테고리 \ 설문 제목4 </SearchItemTitle>
-          <SearchItemDate>게시글 작성 날짜 \ 시간</SearchItemDate>
-        </SearchItem>
-        <SearchItem>
-          <SearchItemTitle> 카테고리 \ 설문 제목5 </SearchItemTitle>
-          <SearchItemDate>게시글 작성 날짜 \ 시간</SearchItemDate>
-        </SearchItem>
-        <SearchItem>
-          <SearchItemTitle> 카테고리 \ 설문 제목6 </SearchItemTitle>
-          <SearchItemDate>게시글 작성 날짜 \ 시간</SearchItemDate>
-        </SearchItem>
-        <SearchItem>
-          <SearchItemTitle> 카테고리 \ 설문 제목7 </SearchItemTitle>
-          <SearchItemDate>게시글 작성 날짜 \ 시간</SearchItemDate>
-        </SearchItem>
-        <SearchItem>
-          <SearchItemTitle> 카테고리 \ 설문 제목8 </SearchItemTitle>
-          <SearchItemDate>게시글 작성 날짜 \ 시간</SearchItemDate>
-        </SearchItem>
-        <SearchItem>
-          <SearchItemTitle> 카테고리 \ 설문 제목9 </SearchItemTitle>
-          <SearchItemDate>게시글 작성 날짜 \ 시간</SearchItemDate>
-        </SearchItem>
-        <SearchItem>
-          <SearchItemTitle> 카테고리 \ 설문 제목10 </SearchItemTitle>
-          <SearchItemDate>게시글 작성 날짜 \ 시간</SearchItemDate>
-        </SearchItem>
-        <SearchItem>
-          <SearchItemTitle> 카테고리 \ 설문 제목11 </SearchItemTitle>
-          <SearchItemDate>게시글 작성 날짜 \ 시간</SearchItemDate>
-        </SearchItem>
+        {searchData.map((searchdata) => (
+          <SearchItem>
+            <SearchItemTitle key={searchdata.key} onClick={postClick} data-post-key={searchdata.key}>
+              {searchdata.설문제목}
+            </SearchItemTitle>
+            <SearchItemDate>{searchdata.게시글작성날짜및시간}</SearchItemDate>
+          </SearchItem>
+        ))}
       </SearchSection>
+
       <PageBTN>
         <LeftCircleOutlined />
         <RightCircleOutlined />

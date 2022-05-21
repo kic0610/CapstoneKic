@@ -2,9 +2,9 @@ import React from "react";
 import styled from "styled-components";
 
 import { LeftCircleOutlined, RightCircleOutlined } from "@ant-design/icons";
+import { useState } from "react";
 
 const MyPostSection = styled.section`
-  background-color: aliceblue;
   position: relative;
   width: 70vw;
   height: auto;
@@ -52,64 +52,31 @@ const PageBTN = styled.div`
 `;
 
 const MySurvey = () => {
+  let [mySurvey, setMySurvey] = useState([
+    { 설문제목: "설문제목1", 게시글작성날짜및시간: "Sat May 21 2022 01:44:33", key: "OWEFQRF" },
+    { 설문제목: "설문제목2", 게시글작성날짜및시간: "Sat May 21 2022 12:55:46", key: "PBMFOGU" },
+  ]);
+
+  //게시물 클릭시 게시물고유 id를통해 페이지 전환하기
+  let postClick = (e) => {
+    window.location.href = `/post/${e.currentTarget.getAttribute("data-post-key")}`;
+    console.log(e.currentTarget.getAttribute("data-post-key"));
+  };
+
   return (
     <div>
       <h1 style={{ marginLeft: "5%", fontWeight: 600 }}>
-        MY 설문목록 (로그인 여부 , 자신의 id로 작성된 설문post접근데이터 , (설문제목, 작성시간, 작성자 , 마감시간) )
+        MY 설문목록 (로그인 여부 , 자신 id로 작성된 post접근데이터 , (설문제목, 작성시간, 작성자 , 마감시간) )
       </h1>
       <MyPostSection>
-        <MyPostItem>
-          <MyPostItemTitle> 카테고리 \ 설문 제목1 </MyPostItemTitle>
-          <MyPostItemDate>게시글 작성 날짜 \ 시간</MyPostItemDate>
-        </MyPostItem>
-        <MyPostItem>
-          <MyPostItemTitle> 카테고리 \ 설문 제목2 </MyPostItemTitle>
-          <MyPostItemDate>게시글 작성 날짜 \ 시간</MyPostItemDate>
-        </MyPostItem>
-        <MyPostItem>
-          <MyPostItemTitle> 카테고리 \ 설문 제목3 </MyPostItemTitle>
-          <MyPostItemDate>게시글 작성 날짜 \ 시간</MyPostItemDate>
-        </MyPostItem>
-        <MyPostItem>
-          <MyPostItemTitle> 카테고리 \ 설문 제목4 </MyPostItemTitle>
-          <MyPostItemDate>게시글 작성 날짜 \ 시간</MyPostItemDate>
-        </MyPostItem>
-        <MyPostItem>
-          <MyPostItemTitle> 카테고리 \ 설문 제목5 </MyPostItemTitle>
-          <MyPostItemDate>게시글 작성 날짜 \ 시간</MyPostItemDate>
-        </MyPostItem>
-        <MyPostItem>
-          <MyPostItemTitle> 카테고리 \ 설문 제목6 </MyPostItemTitle>
-          <MyPostItemDate>게시글 작성 날짜 \ 시간</MyPostItemDate>
-        </MyPostItem>
-        <MyPostItem>
-          <MyPostItemTitle> 카테고리 \ 설문 제목7 </MyPostItemTitle>
-          <MyPostItemDate>게시글 작성 날짜 \ 시간</MyPostItemDate>
-        </MyPostItem>
-        <MyPostItem>
-          <MyPostItemTitle> 카테고리 \ 설문 제목8 </MyPostItemTitle>
-          <MyPostItemDate>게시글 작성 날짜 \ 시간</MyPostItemDate>
-        </MyPostItem>
-        <MyPostItem>
-          <MyPostItemTitle> 카테고리 \ 설문 제목9 </MyPostItemTitle>
-          <MyPostItemDate>게시글 작성 날짜 \ 시간</MyPostItemDate>
-        </MyPostItem>
-        <MyPostItem>
-          <MyPostItemTitle> 카테고리 \ 설문 제목10 </MyPostItemTitle>
-          <MyPostItemDate>게시글 작성 날짜 \ 시간</MyPostItemDate>
-        </MyPostItem>
-        <MyPostItem>
-          <MyPostItemTitle> 카테고리 \ 설문 제목11 </MyPostItemTitle>
-          <MyPostItemDate>게시글 작성 날짜 \ 시간</MyPostItemDate>
-        </MyPostItem>
-        <MyPostItem>
-          <MyPostItemTitle> 카테고리 \ 설문 제목12 </MyPostItemTitle>
-          <MyPostItemDate>게시글 작성 날짜 \ 시간</MyPostItemDate>
-        </MyPostItem>
-        <MyPostItem>
-          <MyPostItemTitle> 카테고리 \ 설문 제목13 </MyPostItemTitle>
-          <MyPostItemDate>게시글 작성 날짜 \ 시간</MyPostItemDate>
-        </MyPostItem>
+        {mySurvey.map((mySurvey) => (
+          <MyPostItem>
+            <MyPostItemTitle key={mySurvey.key} onClick={postClick} data-post-key={mySurvey.key}>
+              {mySurvey.설문제목}
+            </MyPostItemTitle>
+            <MyPostItemDate>{mySurvey.게시글작성날짜및시간}</MyPostItemDate>
+          </MyPostItem>
+        ))}
       </MyPostSection>
       <PageBTN>
         <LeftCircleOutlined />

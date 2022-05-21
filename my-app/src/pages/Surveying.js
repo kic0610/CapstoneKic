@@ -1,11 +1,12 @@
 import { Input, Form } from "antd";
-import { PlusCircleOutlined, MinusCircleOutlined } from "@ant-design/icons";
+import { PlusCircleOutlined } from "@ant-design/icons";
 import React, { useState } from "react";
 import styled from "styled-components";
 import { DatePicker, Space } from "antd";
 import { useCallback } from "react";
 import MultipleChoice from "../components/MultipleChoice";
 import SubjectiveQuestion from "../components/SubjectiveQuestion";
+import { Button } from "antd";
 
 const TemplateSelect = styled.div`
   position: relative;
@@ -19,30 +20,10 @@ const TemplateSelect = styled.div`
 
   background-color: #024059;
 
-  span {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    background-color: antiquewhite;
-    font-size: 1.5rem;
-    font-weight: 600;
-    padding: 5px;
-    width: 25%;
-    height: 30%;
-    border-radius: 5px;
-    transition: 0.6s;
-    cursor: pointer;
-  }
-
-  span:nth-child(1):hover {
-    box-shadow: 0px 0px 15px #ee5d5a;
-  }
-  span:nth-child(2):hover {
-    box-shadow: 0px 0px 15px #e6aa52;
-  }
-  span:nth-child(3):hover {
-    box-shadow: 0px 0px 15px #aec9c3;
+  .ant-btn {
+    width: 160px;
+    height: 55px;
+    font-size: 1.2rem;
   }
 `;
 
@@ -143,16 +124,21 @@ const Surveying = () => {
     setSubjectiveQuestionKey(N_SubjectiveQuestionKey);
   }, [SubjectiveQuestionKey]);
 
+  let onFinish = () => {
+    console.log("제출시도", new Date());
+  };
+
   return (
-    <div>
+    <Form onFinish={onFinish}>
       <h1 style={{ marginLeft: "5%", fontWeight: 600 }}>
         설문하기 (불러올껀 없고 다 작성후 서버에 데이터 전송해주기( 작성시간 , 마감시간 , 고유번호 , 설문제목 ,
         번호별(설문+설문타입,객관식선택지,주관식은타입만체크)))
       </h1>
       <TemplateSelect>
-        <span style={{ backgroundColor: "#EE5D5A" }}>설문 작성 완료</span>
-        <span style={{ backgroundColor: "#E6AA52" }}>자기소개 템플릿</span>
-        <span style={{ backgroundColor: "#AEC9C3" }}>여행지 선택 템플릿</span>
+        {/* <span style={{ backgroundColor: "#EE5D5A" }}>설문 작성 완료</span> */}
+        <Button type="primary" htmlType="submit">
+          설문 작성 완료
+        </Button>
       </TemplateSelect>
       <br />
       <br />
@@ -199,7 +185,7 @@ const Surveying = () => {
           객관식 설문 추가
         </div>
       </AddBtn>
-    </div>
+    </Form>
   );
 };
 

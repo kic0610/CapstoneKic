@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Col, Input } from "antd";
+import { Input } from "antd";
 import { Button } from "antd";
 import { Checkbox } from "antd";
 import { Form } from "antd";
@@ -42,17 +42,6 @@ const SignupBox = styled(Form)`
   left: 5%;
 `;
 
-const LoginImage = styled.div`
-  border: 3px solid blue;
-  > * {
-    border: 1px solid red;
-  }
-
-  position: absolute;
-  left: 50%;
-  top: 30%;
-`;
-
 const SignupForm = () => {
   return (
     <div>
@@ -78,14 +67,15 @@ const SignupForm = () => {
         <Input style={{ width: "15vw", display: "block" }} type={"password"} placeholder="비밀번호 확인" />
         <br />
         <br />
-        <Checkbox>약관에 동의해야 회원가입을 진행할수있습니다 일부로 가로 콘텐츠를 오버플로우 시켰습니다</Checkbox>
+        <Checkbox style={{ msUserSelect: "none", MozUserSelect: "-moz-none", WebkitUserSelect: "none", userSelect: "none" }}>
+          약관에 동의해야 회원가입을 진행할수있습니다.
+        </Checkbox>
         <br />
         <br />
         <Button htmlType="submit" type="primary">
           회원가입
         </Button>
       </SignupBox>
-      <LoginImage>꾸며주는 이미지</LoginImage>
     </div>
   );
 };

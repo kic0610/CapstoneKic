@@ -1,4 +1,4 @@
-import { Link, NavLink, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import React from "react";
 import Home from "./pages/Home";
@@ -11,7 +11,6 @@ import SearchResult from "./components/SearchResult";
 import MySurvey from "./components/MySurvey";
 import SurveyPost from "./components/SurveyPost";
 import HomeMenu from "./components/HomeMenu";
-import Qwer from "./components/Qwer";
 
 const MyFooter = styled.footer`
   position: absolute;
@@ -37,9 +36,8 @@ const App = () => {
         <Route path="/signup" element={<SignupForm />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/surveying" element={<Surveying />} />
-        <Route path="/qwer" element={<Qwer />} />
       </Routes>
-      {/* 데이터를 받아 렌더링하는 page */}
+
       <Routes>
         <Route path="/search/query" element={<SearchResult />} />
         <Route path="/Writer_id/post" element={<MySurvey />} />
