@@ -43,7 +43,7 @@ const Home = () => {
     console.log("Home 리렌더링");
   });
 
-  let [Rtime, setTime] = useState("Hello");
+  let [Rtime, setTime] = useState(".");
 
   const clock = useCallback(() => {
     let time = new Date();

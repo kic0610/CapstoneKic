@@ -49,7 +49,7 @@ const HomeMenuBar = styled(Menu)`
 `;
 
 const HomeMenu = () => {
-  let SearchSubmit = () => {
+  let onSearchSubmit = () => {
     window.location.href = "/search/query";
   };
 
@@ -64,7 +64,14 @@ const HomeMenu = () => {
         <div style={{ fontSize: "2rem", fontWeight: "800", marginRight: "3%", color: "#2F3F56" }}>Home</div>
       </Link>
 
-      <Input.Search style={{ width: "40%" }} placeholder="찾아볼 설문을 입력하세요" enterButton value={SearchText} onChange={onInput} onSearch={SearchSubmit} />
+      <Input.Search
+        style={{ width: "40%" }}
+        placeholder="찾아볼 설문을 입력하세요"
+        enterButton
+        value={SearchText}
+        onChange={onInput}
+        onSearch={onSearchSubmit}
+      />
       <NavLink to="/Writer_id/post">
         <Menu.Item className="MenuBTN" icon={<UserOutlined style={{ fontSize: "1.3rem" }} />}>
           내 정보
