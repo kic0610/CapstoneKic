@@ -3,7 +3,6 @@ import { Button } from "antd";
 import { Input } from "antd";
 import React from "react";
 import styled from "styled-components";
-import PostGraph from "../components/PostGraph";
 
 const LoginBoxText = styled.div`
   position: absolute;
